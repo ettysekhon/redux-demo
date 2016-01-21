@@ -13,12 +13,10 @@ import { App,
   SelectStore } from './containers'
 
 // routing
-import { Router, Route, IndexRoute } from 'react-router'
-import createHistory from 'history/lib/createHashHistory'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistory } from 'redux-simple-router'
 
-const history = createHistory()
-const historyMiddleware = syncHistory(history)
+const historyMiddleware = syncHistory(browserHistory)
 
 // configure middleware & store
 const createStoreWithMiddleware = applyMiddleware(
@@ -46,7 +44,7 @@ const store = configureStore()
 // configure router
 render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={browserHistory}>
       <Route path='/' component={App}>
         <Route path='basket-confirmation' component={BasketConfirmation}/>
         <Route path='delivery-slots' component={DeliverySlots}/>
