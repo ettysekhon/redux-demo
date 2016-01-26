@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Picker from '../components/Picker'
-import DeliverySlots from '../components/DeliverySlots'
+import DeliverySlots from '../components/DeliverySlots/DeliverySlots'
 import { fetchDeliverySlots } from '../actions/deliverySlots'
 import { selectAvailabilityOption } from '../actions/basketConfirmation'
 

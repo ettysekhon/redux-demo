@@ -1,0 +1,3 @@
+<ul className="delivery-slots" rt-scope="this.deliverySlots.reduce((arr, deliverySlot) => {return arr.concat(deliverySlot.slots)},[]) as slots ">
+    <li rt-repeat="deliverySlot in slots" key="{deliverySlotIndex}">{deliverySlot.text}</li>
+</ul>
