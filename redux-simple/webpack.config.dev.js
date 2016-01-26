@@ -10,6 +10,11 @@ module.exports = {
       './src/client/entry'
     ]
   },
+  resolve: {
+    root: [
+      path.resolve('./src')
+    ]
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
@@ -24,6 +29,12 @@ module.exports = {
       test: /\.js?/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
+    }, {
+      test: /\.css|\.styl$/, // Only .css files
+      loader: 'style!css!stylus-loader' // Run both loaders
+    }, {
+      test: /\.html$/,
+      loaders: ['react-templates-loader?targetVersion=0.14.0']
     }]
   }
 };
