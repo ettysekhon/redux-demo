@@ -23,7 +23,7 @@ module.exports = function(config) {
         reporters: [ 'mocha' ],
 
         files: [
-          './src/**/*.spec.js'
+          'tests.bundle.js'
         ],
 
         client: {
@@ -33,7 +33,7 @@ module.exports = function(config) {
         },
 
         preprocessors: {
-          './src/**/*.spec.js': [ 'webpack' ]
+          'tests.bundle.js': [ 'webpack', 'sourcemap' ]
         },
 
         webpack: webpackConf,

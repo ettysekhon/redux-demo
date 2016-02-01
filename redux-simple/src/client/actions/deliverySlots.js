@@ -10,7 +10,6 @@ const mapDeliverySlot = (deliverySlot) => {
 }
 
 const requestDeliverySlots = (date, postCode) => {
-  console.log('requestDeliverySlots');
   return {
     type: REQUEST_DELIVERY_SLOTS,
     date,
