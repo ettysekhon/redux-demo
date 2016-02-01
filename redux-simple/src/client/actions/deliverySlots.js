@@ -10,6 +10,7 @@ const mapDeliverySlot = (deliverySlot) => {
 }
 
 const requestDeliverySlots = (date, postCode) => {
+  console.log('requestDeliverySlots');
   return {
     type: REQUEST_DELIVERY_SLOTS,
     date,
@@ -17,12 +18,10 @@ const requestDeliverySlots = (date, postCode) => {
   }
 }
 
-const receiveDeliverySlots = (date, postCode, json) => {
-  var deliverySlots = json.data.deliverySlots.map(mapDeliverySlot)
+const receiveDeliverySlots = (json) => {
+  var deliverySlots = json.data.deliverySlots.map(mapDeliverySlot);
   return {
     type: RECEIVE_DELIVERY_SLOTS,
-    date,
-    postCode,
     deliverySlots
   }
 }
@@ -33,7 +32,7 @@ export const fetchDeliverySlots = (date, postCode) => {
     return fetch(`${URL}/delivery-slots`)
       .then((response) => response.json())
       .then((json) => {
-        dispatch(receiveDeliverySlots(date, postCode, json))
+        dispatch(receiveDeliverySlots(json))
       })
   }
 }
