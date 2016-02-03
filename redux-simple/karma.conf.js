@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var webpackConf = require('./webpack.config.prod.js');
+var webpackConf = require('./webpack.config.test.js');
 
 module.exports = function(config) {
     config.set({

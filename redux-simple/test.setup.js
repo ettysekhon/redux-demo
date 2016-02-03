@@ -1,7 +1,7 @@
-import { jsdom } from 'jsdom'
+import { jsdom } from 'jsdom';
 
-global.document = jsdom('<!doctype html><html><body></body></html>')
-global.window = document.defaultView
+global.document = jsdom('<!doctype html><html><body></body></html>');
+global.window = document.defaultView;
 
 // We need to take all the properties that the jsdom window object contains,
 // such as navigator, and hoist them on to the Node.js global object.
