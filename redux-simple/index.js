@@ -1,1 +1,1 @@
-require('./src/server/entry.test');
+require('./src/server/entry.dev');
