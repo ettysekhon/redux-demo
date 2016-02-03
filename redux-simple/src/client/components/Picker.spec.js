@@ -36,7 +36,7 @@ describe('Picker', () => {
     expect(select.props.value).toBe('Home delivery')
   });
 
-  it('should call onChange', () => {
+  it('should call onChange once', () => {
     const { output, props } = setup();
     let select = output.props.children[1];
     var e = {
@@ -46,5 +46,17 @@ describe('Picker', () => {
     };
     select.props.onChange(e);
     expect(props.onChange.calls.length).toBe(1);
+  });
+
+  it('should call onChange with correct value', () => {
+    const { output, props } = setup();
+    let select = output.props.children[1];
+    var e = {
+      target: {
+        value: 'Collect in store'
+      }
+    };
+    select.props.onChange(e);
+    expect(props.onChange).toHaveBeenCalledWith('Collect in store');
   });
 })
