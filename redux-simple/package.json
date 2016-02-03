@@ -10,8 +10,8 @@
     "prebuild": "npm run lint",
     "start": "node index.js",
     "lint": "eslint src",
-    "test-light": "mocha './src/**/*.spec.js' --watch --compilers js:babel-core/register --recursive --require ./test.setup.js",
-    "test": "npm run lint && npm run test-light",
+    "test-dev": "mocha './src/**/*.spec.js' --watch --compilers js:babel-core/register --recursive --require ./test.setup.js",
+    "test": "npm run lint && npm run test-dev",
     "test-browser": "karma start"
   },
   "author": "",

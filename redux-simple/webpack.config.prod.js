@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -27,6 +28,10 @@ module.exports = {
         warnings: false
       }
     }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: false
+    })
   ],
 
   module: {
