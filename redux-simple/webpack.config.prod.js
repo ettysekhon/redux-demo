@@ -1,18 +1,21 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
+
   entry: {
     bundle: [
       './src/client/entry'
     ]
   },
+
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/dist/'
+    filename: '[name].js'
   },
+
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
@@ -25,7 +28,12 @@ module.exports = {
         warnings: false
       }
     }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: false
+    })
   ],
+
   module: {
     loaders: [{
       test: /\.js?/,

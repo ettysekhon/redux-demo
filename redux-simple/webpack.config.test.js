@@ -7,8 +7,6 @@ module.exports = {
 
   entry: {
     bundle: [
-      'eventsource-polyfill', // necessary for hot reloading with IE
-      'webpack-hot-middleware/client',
       './src/client/entry'
     ]
   },
@@ -19,8 +17,17 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: false
@@ -33,5 +40,9 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
     }]
+  },
+
+  node: {
+    fs: 'empty'
   }
 };

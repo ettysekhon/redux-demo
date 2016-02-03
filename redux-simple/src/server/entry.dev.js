@@ -11,8 +11,7 @@ const compiler = webpack(config);
 app.use(morgan('dev'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
+  noInfo: true
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
