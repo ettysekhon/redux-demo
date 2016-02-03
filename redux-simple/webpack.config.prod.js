@@ -3,16 +3,18 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
+
   entry: {
     bundle: [
       './src/client/entry'
     ]
   },
+
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/dist/'
+    filename: '[name].js'
   },
+
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
@@ -26,6 +28,7 @@ module.exports = {
       }
     }),
   ],
+
   module: {
     loaders: [{
       test: /\.js?/,
