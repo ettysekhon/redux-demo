@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRenderer } from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 import expect from 'expect';
 import DeliverySlots from './DeliverySlots';
 
@@ -15,34 +15,21 @@ const TEST_DELIVERY_SLOTS = [{
 }];
 
 describe('DeliverySlots', () => {
-
   it('renders correct number of delivery slots', () => {
+    const wrapper = shallow(<DeliverySlots deliverySlots={TEST_DELIVERY_SLOTS} />);
 
-    const shallowRenderer = createRenderer();
-    shallowRenderer.render(<DeliverySlots deliverySlots={TEST_DELIVERY_SLOTS} />);
-    const deliverySlots = shallowRenderer.getRenderOutput();
+    const expectedSlots = TEST_DELIVERY_SLOTS[0].slots.length;
 
-    // get slots for first date
-    const actualSlotList = deliverySlots.props.children[0].filter((s) => s.type === 'li');
-    const expectedSlotList = TEST_DELIVERY_SLOTS[0].slots;
+    const actualSlots = wrapper.find('li').length;
 
-    expect(actualSlotList.length).toEqual(expectedSlotList.length);
-
+    expect(actualSlots).toEqual(expectedSlots);
   });
 
+  it('renders the slot label correctly', () => {
+    const wrapper = shallow(<DeliverySlots deliverySlots={TEST_DELIVERY_SLOTS} />);
 
-  it('renders morning first slot', () => {
+    const firstSlot = wrapper.find('li').first();
 
-    const shallowRenderer = createRenderer();
-    shallowRenderer.render(<DeliverySlots deliverySlots={TEST_DELIVERY_SLOTS} />);
-    const deliverySlots = shallowRenderer.getRenderOutput();
-
-    const actualSlots = deliverySlots.props.children[0].filter((s) => s.type === 'li');
-    const actualMorningSlot = actualSlots[0].props.children;
-    const expectedMorningSlot = TEST_DELIVERY_SLOTS[0].slots[0].text;
-    expect(actualMorningSlot).toEqual(expectedMorningSlot);
-
+    expect(firstSlot.text()).toContain('morning');
   });
-
-
 });
