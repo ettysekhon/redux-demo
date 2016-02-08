@@ -108,5 +108,5 @@ https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-
 http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
 
 ## Things to consider
-* [visual regression testing](https://css-tricks.com/visual-regression-testing-with-phantomcss/)
+* [visual regression testing](http://www.rightmove.co.uk/dev/blog/visual-regression-automation/) also see [phantomcss](https://css-tricks.com/visual-regression-testing-with-phantomcss/)
 * e2e tests - see [nightwatch](http://nightwatchjs.org/)
