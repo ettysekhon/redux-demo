@@ -6,8 +6,8 @@
 3. easy to write
 
 ## Things to test:
-1. Structure Tests -
-2. Behavior Tests -
+1. Structure Tests - assert/test the output of components based on prop values
+2. Behavior Tests - simulate events or call prop callback handlers
 
 ## Test Stack:
 We use the following libraries:
