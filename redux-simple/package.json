@@ -10,7 +10,7 @@
     "prebuild": "npm run lint",
     "start": "node index.js",
     "lint": "eslint src",
-    "test-dev": "mocha './src/**/*.spec.js' --watch --compilers js:babel-core/register --recursive --require ./test.setup.js",
+    "test-dev": "mocha './src/**/*.spec.js' --compilers js:babel-core/register --recursive --require ./test.setup.js",
     "test": "npm run lint && npm run test-dev",
     "test-browser": "karma start"
   },
@@ -24,6 +24,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "cross-env": "^1.0.7",
+    "enzyme": "^1.5.0",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.15.0",
@@ -42,6 +43,7 @@
     "mocha-loader": "^0.7.1",
     "react-addons-test-utils": "^0.14.6",
     "rimraf": "^2.5.0",
+    "supertest": "^1.1.0",
     "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"

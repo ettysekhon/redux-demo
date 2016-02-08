@@ -1,6 +1,6 @@
 import expect from 'expect'
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { shallow } from 'enzyme';
 import Picker from './Picker'
 
 function setup() {
@@ -10,53 +10,52 @@ function setup() {
     onChange: expect.createSpy()
   }
 
-  let renderer = TestUtils.createRenderer()
-  renderer.render(<Picker {...props} />)
-  let output = renderer.getRenderOutput()
+  const wrapper = shallow(<Picker {...props} />);
 
   return {
     props,
-    output,
-    renderer
+    wrapper
   }
 }
 
 describe('Picker', () => {
   it('should render correctly', () => {
-    const { output } = setup()
+    const { wrapper, props } = setup()
 
-    expect(output.type).toBe('span')
+    expect(wrapper.type()).toBe('span');
 
-    let [ h1, select ] = output.props.children
+    const h1 = wrapper.find('h1');
+    const select = wrapper.find('select');
 
-    expect(h1.type).toBe('h1')
-    expect(h1.props.children).toBe('Home delivery')
+    expect(h1.type()).toBe('h1');
+    expect(h1.text()).toBe(props.value);
 
-    expect(select.type).toBe('select')
-    expect(select.props.value).toBe('Home delivery')
+    expect(select.type()).toBe('select');
+    expect(select.props().value).toBe(props.value);
+    expect(select.find('option').length).toBe(props.options.length);
   });
 
   it('should call onChange once', () => {
-    const { output, props } = setup();
-    let select = output.props.children[1];
+    const { wrapper, props } = setup();
+    let select = wrapper.find('select');
     var e = {
       target: {
         value: 'Collect in store'
       }
     };
-    select.props.onChange(e);
+    select.props().onChange(e);
     expect(props.onChange.calls.length).toBe(1);
   });
 
   it('should call onChange with correct value', () => {
-    const { output, props } = setup();
-    let select = output.props.children[1];
+    const { wrapper, props } = setup();
+    let select = wrapper.find('select');
     var e = {
       target: {
         value: 'Collect in store'
       }
     };
-    select.props.onChange(e);
+    select.props().onChange(e);
     expect(props.onChange).toHaveBeenCalledWith('Collect in store');
   });
 })
