@@ -30,6 +30,7 @@ See sample tests in the actions and reducers folders. See [writing redux tests](
 
 ## How to test:
 1. XHR Requests
+
   * We simply mock the XHR using nock or similar:
 
 ```
@@ -41,6 +42,7 @@ See sample tests in the actions and reducers folders. See [writing redux tests](
 ```
 
   * We do not need to create an integration test, we can add test for API if necessary by using supertest for express or similar:
+
 ```
   import app  from './app.js';
   import request from 'supertest';
@@ -104,3 +106,7 @@ https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-
 
 ## Further info
 http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
+
+## Things to consider
+* [visual regression testing](https://css-tricks.com/visual-regression-testing-with-phantomcss/)
+* e2e tests - see [nightwatch](http://nightwatchjs.org/)
