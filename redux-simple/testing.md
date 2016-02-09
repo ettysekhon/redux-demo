@@ -18,7 +18,7 @@ We use the following libraries:
 * Enzyme provides a jquery like API to assert, manipulate, and traverse React output and is an alternative to react test utils.
 
 ## Test Basics:
-1. spies/mocks - you can create spies using the expect assertion library. If you need to mock require dependencies then use rewire [rewire](https://github.com/jhnns/rewire)
+1. spies/mocks - you can create spies using the expect assertion library. If you need to mock require dependencies then use [rewire](https://github.com/jhnns/rewire)
 2. spec/suite - breakdown suits/specs suitability to ensure tests are easy to follow and read (like reading simple english).
 3. test setup/clean up - setup and clean state where necessary
 
