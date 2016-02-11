@@ -12,26 +12,28 @@
 ## Test Stack:
 We use the following libraries:
 
-* Mocha is the most widely used test runner
-* expect is a popular assertion library used in open source React projects.
-* jsdom provides a headless DOM for React to use in tests, it is very fast and is also very popular in the React open source community.
-* Enzyme provides a jquery like API to assert, manipulate, and traverse React output and is an alternative to react test utils.
+* [mocha](https://github.com/mochajs/mocha) test framework
+* [expect](https://github.com/mjackson/expect) a popular assertion library used in open source many of the biggest React projects. It also provides spy functions so there is no need for an extra library like Sinon for this.
+* [jsdom](https://github.com/tmpvar/jsdom) this provides a headless DOM for React to use in tests, it is very fast.
+* [Enzyme](https://github.com/airbnb/enzyme) provides a jquery like API to assert, manipulate, and traverse React output and is an alternative to react test utils.
+* [nock](https://github.com/pgte/nock) to mock http requests.
+* [karma](https://github.com/karma-runner/karma) to run tests in a various browsers as required.
+* [rewire](https://github.com/jhnns/rewire) to mock require dependencies.
+* [webdriver.io](https://github.com/webdriverio/webdriverio/) for JS Selenium based e2e tests.
 
-## Test Basics:
-1. spies/mocks - you can create spies using the expect assertion library. If you need to mock require dependencies then use [rewire](https://github.com/jhnns/rewire)
-2. spec/suite - breakdown suits/specs suitability to ensure tests are easy to follow and read (like reading simple english).
-3. test setup/clean up - setup and clean state where necessary
-
-## Test Structures:
-Spec files should be saved in same folder as src file rather than in a parallel structure under test folder.
-
-## Testing redux
-See sample tests in the actions and reducers folders. See [writing redux tests](http://rackt.org/redux/docs/recipes/WritingTests.html) for further information.
+## Test Guidelines:
+* breakdown specs/suites to ensure tests are easy to read in the reports (i.e. read like simple english).
+* tests should not be dependent on run sequence use beforeEach/afterEach to setup/cleanup state as necessary.
+* test files should be saved in the same folder as src and not in a sub folder or in a parallel structure under test folder.
+* we should attempt to create stateless components - this makes testing various scenarios very easy, simply render the component with different props and then make assertions on the rendered DOM. Do not make assertions on component.state or component.props see [testing-components](
+https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-components.md)
+* we should use a bad data set to help test our code e.g.   0, 'zero', '', {}, -1, -0.01, 0.01, { something: '' }, null, true, false, undefined, [], '¶', 'some emoji', () => {}, '123abc', 'ABC', 'abc', 'abc 123', ' abc123', ' abc123', 'abc  123'
 
 ## How to test:
-1. XHR Requests
+1. Redux - see [writing redux tests](http://rackt.org/redux/docs/recipes/WritingTests.html) which includes sample tests.
+2. XHR Requests:
 
-  * We simply mock the XHR using nock or similar:
+Use nock to mock the http response:
 
 ```
   nock('http://localhost:3000/api')
@@ -41,7 +43,7 @@ See sample tests in the actions and reducers folders. See [writing redux tests](
     });
 ```
 
-  * We do not need to create an integration test, we can add test for API if necessary by using supertest for express or similar:
+We also need to create tests that make direct requests to the API to assert the data structure returned. We can use supertest for express or another similar approach:
 
 ```
   import app  from './app.js';
@@ -60,53 +62,19 @@ See sample tests in the actions and reducers folders. See [writing redux tests](
     });
   });
 ```
-  * an e2e test can also be created if necessary
 
-2. Navigation  - we should our routes to ensure we are rendering correct components for our routes, we should also test any route onEnter/onLeave logic. See link for further information:
+full e2e tests using webdriver.io will also test calls to the API
+
+3. Navigation  - we should our routes to ensure we are rendering correct components for our routes, we should also test any route onEnter/onLeave logic. See link for further information:
 [react-router tests](https://github.com/rackt/react-router/tree/master/modules/__tests__)
 
-3. Validation - test the save/submit handlers and confirm we render any error states
+4. Validation - test the save/submit handlers and confirm we render any error states.
 
-4. 'Smart'/Container (redux) Components:
-General approach is not to test the whole app, you can however extract the app component from container (see App.js in component/container) to test App component and separate from redux, see link: https://github.com/rackt/redux/issues/447
-
-## Do's:
-1. minimize component state, this makes testing various scenarios very easy (simply render with different props and then make assertions).
-2. create negative tests too and handle bad input:
-
-[
-  0,
-  'zero',
-  '',
-  {},
-  -1,
-  -0.01,
-  0.01,
-  { something: '' },
-  null,
-  true,
-  false,
-  undefined,
-  [],
-  '¶',
-  'some emoji',
-  () => {},
-  '123abc',
-  'ABC',
-  'abc',
-  'abc 123', // space middle
-  ' abc123', // space start
-  ' abc123', // space start
-  'abc  123', //tab
-]
-
-## Don'ts:
-1. Make assertions on component.state or component.props, assert on the DOM when you can, see [testing-components](
-https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-components.md)
+5. 'Smart'/Container (redux) Components:
+General approach is not to test the whole app, you can however extract the app component from the container (see App.js in component/container) to test App component and separate from redux, see link: https://github.com/rackt/redux/issues/447
 
 ## Further info
 http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
 
 ## Things to consider
 * [visual regression testing](http://www.rightmove.co.uk/dev/blog/visual-regression-automation/) also see [phantomcss](https://css-tricks.com/visual-regression-testing-with-phantomcss/)
-* e2e tests - see [nightwatch](http://nightwatchjs.org/)
