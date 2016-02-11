@@ -13,8 +13,8 @@
 We use the following libraries:
 
 * [mocha](https://github.com/mochajs/mocha) test framework
-* [expect](https://github.com/mjackson/expect) a popular assertion library used in open source many of the biggest React projects. It also provides spy functions so there is no need for an extra library like Sinon for this.
-* [jsdom](https://github.com/tmpvar/jsdom) this provides a headless DOM for React to use in tests, it is very fast.
+* [expect](https://github.com/mjackson/expect) a popular assertion library used in open source React projects. It also provides spy functions so there is no need for an extra library like Sinon for this.
+* [jsdom](https://github.com/tmpvar/jsdom) this provides a headless DOM for React to use in tests. It is very fast.
 * [Enzyme](https://github.com/airbnb/enzyme) provides a jquery like API to assert, manipulate, and traverse React output and is an alternative to react test utils.
 * [nock](https://github.com/pgte/nock) to mock http requests.
 * [karma](https://github.com/karma-runner/karma) to run tests in a various browsers as required.
