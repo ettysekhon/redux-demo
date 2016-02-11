@@ -31,7 +31,7 @@ https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-
 * Use shallow rendering for tests especially for stateless components, use full rendering when necessary (switching between the 2 is easy as they share almost same API in Enzyme).
 
 ## How to test:
-1. Redux - see [writing redux tests](http://rackt.org/redux/docs/recipes/WritingTests.html) which includes sample tests.
+1. Redux - see [writing redux tests](http://rackt.org/redux/docs/recipes/WritingTests.html) which includes sample tests. See also the following [article](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html) which uses a TDD approach to redux.
 2. XHR Requests:
 
 Use nock to mock the http response:
