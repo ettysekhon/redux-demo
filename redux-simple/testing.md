@@ -28,6 +28,7 @@ We use the following libraries:
 * we should attempt to create stateless components - this makes testing various scenarios very easy, simply render the component with different props and then make assertions on the rendered DOM. Do not make assertions on component.state or component.props see [testing-components](
 https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/02-testing-components.md)
 * we should use a bad data set to help test our code e.g.   0, 'zero', '', {}, -1, -0.01, 0.01, { something: '' }, null, true, false, undefined, [], '¶', 'some emoji', () => {}, '123abc', 'ABC', 'abc', 'abc 123', ' abc123', ' abc123', 'abc  123'
+* Use shallow rendering for tests especially for stateless components, use full rendering when necessary (switching between the 2 is easy as they share almost same API in Enzyme).
 
 ## How to test:
 1. Redux - see [writing redux tests](http://rackt.org/redux/docs/recipes/WritingTests.html) which includes sample tests.
@@ -63,7 +64,7 @@ We also need to create tests that make direct requests to the API to assert the 
   });
 ```
 
-full e2e tests using webdriver.io will also test calls to the API
+Create full e2e tests using webdriver.io which will also test calls to the API.
 
 3. Navigation  - we should our routes to ensure we are rendering correct components for our routes, we should also test any route onEnter/onLeave logic. See link for further information:
 [react-router tests](https://github.com/rackt/react-router/tree/master/modules/__tests__)
@@ -77,4 +78,5 @@ General approach is not to test the whole app, you can however extract the app c
 http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
 
 ## Things to consider
-* [visual regression testing](http://www.rightmove.co.uk/dev/blog/visual-regression-automation/) also see [phantomcss](https://css-tricks.com/visual-regression-testing-with-phantomcss/)
+* [visual regression testing](http://www.rightmove.co.uk/dev/blog/visual-regression-automation/) also see [phantomcss](https://css-tricks.com/visual-regression-testing-with-phantomcss/) or [cactus](https://github.com/winston/cactus)
+* performance of tests - we should measure it and use approach to fail tests if we exceed a threshold
