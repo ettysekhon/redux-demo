@@ -1,9 +1,7 @@
-import fetch from 'isomorphic-fetch'
+import API from '../api';
 import {
   REQUEST_DELIVERY_SLOTS,
   RECEIVE_DELIVERY_SLOTS } from './types'
-
-const URL = 'http://localhost:3000/api'
 
 const mapDeliverySlot = (deliverySlot) => {
   return deliverySlot
@@ -27,8 +25,8 @@ const receiveDeliverySlots = (json) => {
 
 export const fetchDeliverySlots = (date, postCode) => {
   return (dispatch) => {
-    dispatch(requestDeliverySlots(date, postCode))
-    return fetch(`${URL}/delivery-slots`)
+    dispatch(requestDeliverySlots(date, postCode));
+    return API.deliverySlots
       .then((response) => response.json())
       .then((json) => {
         dispatch(receiveDeliverySlots(json))

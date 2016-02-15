@@ -10,9 +10,10 @@
     "prebuild": "npm run lint",
     "start": "node index.js",
     "lint": "eslint src",
-    "test-dev": "mocha './src/**/*.spec.js' --compilers js:babel-core/register --recursive --require ./test.setup.js",
-    "test": "npm run lint && npm run test-dev",
-    "test-browser": "karma start"
+    "test:dev": "mocha './src/**/*.spec.js' --compilers js:babel-core/register --recursive --require ./test.setup.js",
+    "test": "npm run lint && npm run test:dev",
+    "test:browser": "karma start",
+    "test:e2e": "mocha './src/**/*.e2e.js' --compilers js:babel-core/register --recursive --require ./test.setup.js --timeout 8000"
   },
   "author": "",
   "license": "ISC",
