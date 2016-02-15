@@ -64,7 +64,24 @@ We also need to create tests that make direct requests to the API to assert the 
   });
 ```
 
-Create full e2e tests using webdriver.io which will also test calls to the API.
+Alternatively you could create API integration tests, like so:
+
+```
+import expect from 'expect';
+import API from './index';
+
+describe('API', () => {
+  it('should return delivery slots', (done) => {
+    API.deliverySlots
+      .then((response) => response.json())
+      .then((json) => {
+        expect(json).toExist();
+        done();
+      })
+  });
+```
+
+Rather than create Redux [integration tests] (https://github.com/reactjs/redux/issues/469), create Selenium based JS e2e tests using something like webdriver.io instead.
 
 3. Navigation  - we should our routes to ensure we are rendering correct components for our routes, we should also test any route onEnter/onLeave logic. See link for further information:
 [react-router tests](https://github.com/rackt/react-router/tree/master/modules/__tests__)

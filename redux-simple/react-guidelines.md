@@ -42,4 +42,4 @@ export default TimeUnit;
 
 ## Redux Guidelines
 1. Reducer functions must be pure.
-2. Using flat data structures for state or as flat as possible (there are also some performance benefits when used with the PureRenderMixin).
+2. Use flat data structures for state or as flat as possible (there are also some performance benefits when used with the PureRenderMixin).
