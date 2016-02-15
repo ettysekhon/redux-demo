@@ -68,7 +68,7 @@ Alternatively you could create API integration tests, like so:
 
 ```
 import expect from 'expect';
-import API from './index';
+import API from './api';
 
 describe('API', () => {
   it('should return delivery slots', (done) => {
@@ -81,19 +81,15 @@ describe('API', () => {
   });
 ```
 
-Rather than create Redux [integration tests] (https://github.com/reactjs/redux/issues/469), create Selenium based JS e2e tests using something like webdriver.io instead.
-
-3. Navigation  - we should our routes to ensure we are rendering correct components for our routes, we should also test any route onEnter/onLeave logic. See link for further information:
-[react-router tests](https://github.com/rackt/react-router/tree/master/modules/__tests__)
-
-4. Validation - test the save/submit handlers and confirm we render any error states.
-
-5. 'Smart'/Container (redux) Components:
-General approach is not to test the whole app, you can however extract the app component from the container (see App.js in component/container) to test App component and separate from redux, see link: https://github.com/rackt/redux/issues/447
+Rather than create Redux [integration tests] (https://github.com/reactjs/redux/issues/469), create Selenium based JS e2e tests using something like [webdriver.io](https://github.com/webdriverio/webdriverio/) instead.
 
 ## Further info
 http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
 
 ## Things to consider
 * [visual regression testing](http://www.rightmove.co.uk/dev/blog/visual-regression-automation/) also see [phantomcss](https://css-tricks.com/visual-regression-testing-with-phantomcss/) or [cactus](https://github.com/winston/cactus)
-* performance of tests - we should measure it and use approach to fail tests if we exceed a threshold
+* Performance of tests - we should measure it and use approach to fail tests if we exceed a threshold
+* Navigation - we should test our routes to ensure we are rendering correct components for our routes and test any route onEnter/onLeave logic. See link for further information:
+[react-router tests](https://github.com/rackt/react-router/tree/master/modules/__tests__)
+* Validation - test save/submit handlers and confirm we render any error states.
+* 'Smart'/Container (redux) Components. Do not test the whole app, you can however extract the app component from the container (see App.js in component/container) and separate from redux, see link https://github.com/rackt/redux/issues/447
