@@ -38,7 +38,7 @@ export default TimeUnit;
 4. Validate prop types
 5. Use class syntax to define components or use the stateless component style (shown above). Define render function as last function on React component. Use higher order functions to replace [mixins](https://jsbin.com/boxoso/2/edit?html,js,output).
 6. Use es2015 import/export rather than require/module.exports.
-7. Use arrow functions rather than using function statement.
+7. Use arrow functions rather than using function statement (as long as you are aware of the change of this context, this may not be what you always want, in which case revert to using function statement).
 
 ## Redux Guidelines
 1. Reducer functions must be pure.
