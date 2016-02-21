@@ -12,6 +12,7 @@
 ## Test Stack:
 We use the following libraries:
 
+* [precommit] (https://github.com/observing/pre-commit) to prevent commits if tests fail
 * [mocha](https://github.com/mochajs/mocha) test framework
 * [expect](https://github.com/mjackson/expect) a popular assertion library used in open source React projects. It also provides spy functions so there is no need for an extra library like Sinon for this.
 * [jsdom](https://github.com/tmpvar/jsdom) this provides a headless DOM for React to use in tests. It is very fast.
